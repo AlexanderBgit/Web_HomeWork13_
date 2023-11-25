@@ -1,0 +1,32 @@
+{% extends 'quotes/base.html' %}
+{% block content %}
+    <div class="author-details">
+        <h3 class="author-title">{{ author.fullname }}</h3>
+        <!-- <p><strong>Description:</strong> {{ author.description }}</p> -->
+
+        <h3>Quotes</h3>
+        <!-- {{ quotes|safe }} -->
+        
+        <!-- Quotes for Author {{ author_id }} -->
+        <div>
+            
+                <p>{{ quotes|escape }}</p>
+            
+        </div>
+
+
+
+        {% for quote in quotes_by_author %}
+        <div class="quote">
+            <p>{{ quote.quote }}</p>
+            <div class="tags">
+                Tags: {% for tag in quote.tags.all %}
+                    <a class="tag" href="/tag/{{ tag.name }}">{{ tag.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}
+
